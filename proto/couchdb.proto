@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package couchdb;
+
+service CouchDBService {
+  rpc createDocument (CreateDocumentRequest) returns (CreateDocumentResponse);
+  rpc getDocument (GetDocumentRequest) returns (GetDocumentResponse);
+  rpc updateDocument (UpdateDocumentRequest) returns (UpdateDocumentResponse);
+  rpc deleteDocument (DeleteDocumentRequest) returns (DeleteDocumentResponse);
+}
+
+message CreateDocumentRequest {
+  string database = 1; // Specify the database name dynamically
+  string documentId = 2;
+  string document = 3;
+}
+
+message CreateDocumentResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string id = 3; // You may return the document ID
+}
+
+message GetDocumentRequest {
+  string database = 1; // Specify the database name dynamically
+  string documentId = 2;
+}
+
+message GetDocumentResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string document = 3;
+}
+
+message UpdateDocumentRequest {
+  string database = 1; // Specify the database name dynamically
+  string documentId = 2;
+  string document = 3;
+}
+
+message UpdateDocumentResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string id = 3; // You may return the document ID
+}
+
+message DeleteDocumentRequest {
+  string database = 1; // Specify the database name dynamically
+  string documentId = 2;
+}
+
+message DeleteDocumentResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
